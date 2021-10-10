@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/card.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap-responsive.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap-responsive.css}"/>
+    
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Architects+Daughter" />
+    <link href="http://fonts.cdnfonts.com/css/caveat" rel="stylesheet">
+    <link href="http://fonts.cdnfonts.com/css/sacramento-2" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    
+<title>Products Section</title>
+</head>
+<body>
+
+	<nav class="square4 navbar navbar-expand-lg navbar-light bg-light fuente3">
+		<div class="square4 container-fluid">
+		<a class="navbar-brand" th:href="@{/}">
+			<img th:src="@{/images/shopp.png}"  src="../static/images/shopp.png" width="auto" height="50" class="d-inline-block align-top" alt=""/>
+   		</a>
+   		
+   		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav">
+            	 <li class="nav-item active">
+                    <a class="text-primary nav-link letter2" th:href="@{/admin}" href="#"><strong>admin-home</strong><i class='bx bxs-grid'></i></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="text-primary nav-link letter2" th:href="@{/logout}" href="#"><strong>logout</strong><i class='bx bxs-x-circle'></i></a>
+                </li>
+            </ul>
+        </div>
+		</div>
+	</nav>
+	
+	<div class="container-fluid card" style="margin-top: 2%; width:60%">
+		
+		<a th:href="@{/admin/products/add}" style="margin: 20px 0; margin-left: 150px" class="letter text-success"><i class='bx bxs-duplicate'></i>  Add Product</a>
+		<table class="table" style="margin-left:150px; width:60%">
+			<thead class="thead-light">
+        <tr>
+            <th class="letter2" scope="col">SN</th>
+            <th class="letter2" scope="col">Preview</th>
+            <th class="letter2" scope="col">Product Name</th>
+            <th class="letter2" scope="col">Category</th>            
+            <th class="letter2" scope="col">Delete</th>
+            <th class="letter2" scope="col">Update</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="product, iStat : ${products}">
+            <th class="letter2 animated fadeInDown" scope="row" th:text="${iStat.index + 1}">1</th>
+            <td><img src="" height="100px" width="100px" class="card animated fadeInDown" th:src="@{${'/productImages/' + product.imageName}}"></td>
+            <td class="letter text-secondary animated fadeInDown" th:text="${product.name}"></td>
+            <td class="letter text-secondary animated fadeInDown" th:text="${product.category.name}"></td>
+            
+
+            <td><a href="" th:href="@{/admin/product/delete/{id}(id=${product.id})}" class="btn btn-outline-danger letterB animated fadeInRight" style="border-radius:35%"><i class='bx bxs-trash-alt'></i>Delete</a></td>
+            <td><a href="" th:href="@{/admin/product/update/{id}(id=${product.id})}" class="btn btn-outline-primary letterB animated fadeInRight" style="border-radius:35%"><i class='bx bxs-pencil' ></i>Update</a></td>
+
+        </tr>
+        </tbody>
+        
+		</table>
+	</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>
